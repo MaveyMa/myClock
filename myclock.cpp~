@@ -154,7 +154,7 @@ void MyClock::tick()
 {
 	// If seconds is 60, 
 	// 		set seconds to 0 and increase minutes by 1. 
-	if (seconds < 60)
+	if (seconds < 59)
 	{
 		seconds++;
 	}
@@ -164,7 +164,7 @@ void MyClock::tick()
 		minutes++;
 		// If minutes is 60, 
 		// 		set minutes to 0 and increase hours by 1
-		if (minutes < 60)
+		if (minutes < 59)
 		{
 			minutes++;
 		}
@@ -174,7 +174,7 @@ void MyClock::tick()
 			hours++;
 			// If hours is 13 AM, 
 			// 		set hours to 1 AM.
-			if (hours < 13)
+			if (hours < 12)
 			{
 				hours++;
 			}
@@ -196,10 +196,6 @@ void MyClock::displayMilitaryTime()
 	cout << hours << ":" << minutes << endl;
 	return;
 }//END DISPLAY M TIME
-		// Helper function for displayTime().
-		// Display military time 1:00 hours to 24:00 hours. 
-		//****************************************
-		//
 
 void MyClock::displayTime()
 {
@@ -213,9 +209,3 @@ void MyClock::displayTime()
 	}
 	return;
 }//END DISPLAY TIME
-		// If isMilitaryTime is false,
-		// 		display standard time 12:00 A.
-		// If isMilitaryTime is true,
-		// 		display military time 1:00 hrs to 24:00 hrs.
-
-
