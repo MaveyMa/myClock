@@ -1,0 +1,221 @@
+#include <iostream>
+#include <string>
+#include "myclock.h"
+#include <cctype> //toupper()
+
+using namespace std;
+
+MyClock::MyClock()
+{
+	hours = 12;
+	minutes = 0;
+	seconds = 0;
+	amPm = 'A';
+	isMilitaryTime = false;
+}//END DEFAULT CONSTRUCTOR
+
+MyClock::MyClock(unsigned int h, unsigned int m,
+				 unsigned int s, char aOrP, bool isMTime)
+{
+	// Assign h if it's [1, 12] range. Else hours is 1.
+	if (h >= 1 && h <= 12)
+	{
+		hours = h;
+	}
+	else
+	{
+		hours = 1;
+	}
+	// Assign m if it's [0, 59] range. Else minutes is 0.
+	if (m >= 0 && m <= 59)
+	{
+		minutes = m;
+	}
+	else
+	{
+		minutes = 0;
+	}
+	// Assign s if it's [0, 59] range. Else seconds is 0.
+	if (s >= 0 && s <= 59)
+	{
+		seconds = s;
+	}
+	else
+	{
+		seconds = 0;
+	}
+	// Assign aOrP A/a or P/p. Else amPm is A.
+	aOrP = toupper(aOrP);
+	if (aOrP == 'A' || aOrP == 'P')
+	{
+		amPm = aOrP;
+	}
+	else
+	{
+		amPm = 'A';
+	}
+	// Military Time boolean
+	isMilitaryTime = isMTime;
+}//END OVERLOADED CONSTRUCTOR
+
+void MyClock::setHours(unsigned int h)
+{
+	// Assign h if it's [1, 12] range. Else hours is 1.
+	if (h >= 1 && h <= 12)
+	{
+		hours = h;
+	}
+	else
+	{
+		hours = 1;
+		cout << "Default hours to 1.\n";
+	}
+	return;
+}//END SET HOURS
+
+void MyClock::setMinutes(unsigned int m)
+{
+	// Assign m if it's [0, 59] range. Else minutes is 0.
+	if (m >= 0 && m <= 59)
+	{
+		minutes = m;
+	}
+	else
+	{
+		minutes = 0;
+		cout << "Default minutes to 0.\n";
+	}
+	return;
+}//END SET MINUTES
+
+void MyClock::setSeconds(unsigned int s)
+{
+	// Assign s if it's [0, 59] range. Else seconds is 0.
+	if (s >= 0 && s <= 59)
+	{
+		seconds = s;
+	}
+	else
+	{
+		seconds = 0;
+		cout << "Default seconds to 0.\n";
+	}
+	return;
+}//END SET SECONDS
+
+
+void MyClock::setAMPM(char aOrP)
+{
+	// Assign aOrP A/a or P/p. Else amPm is A.
+	aOrP = toupper(aOrP);
+	if (aOrP == 'A' || aOrP == 'P')
+	{
+		amPm = aOrP;
+	}
+	else
+	{
+		amPm = 'A';
+		cout << "Default AM/PM to 'A'.\n";
+	}
+	return;
+}//END SET AM/PM
+
+void MyClock::setMilitaryTime(bool isMTime)
+{
+	isMilitaryTime = isMTime;
+	return;
+}//END SET M TIME
+
+unsigned int MyClock::getHours()
+{
+	return hours;
+}//END GET HOURS
+
+unsigned int MyClock::getMinutes()
+{
+	return minutes;
+}//GET MINUTES
+
+unsigned int MyClock::getSeconds()
+{
+	return seconds;
+}//END GET SECONDS
+
+char MyClock::getAMPM()
+{
+	return amPm;
+}//END GET AM/PM
+bool MyClock::getMilitaryTime()
+{
+	return isMilitaryTime;
+}//END GET M TIME
+
+void MyClock::tick()
+{
+	// If seconds is 60, 
+	// 		set seconds to 0 and increase minutes by 1. 
+	if (seconds < 60)
+	{
+		seconds++;
+	}
+	else
+	{
+		seconds = 0;
+		minutes++;
+		// If minutes is 60, 
+		// 		set minutes to 0 and increase hours by 1
+		if (minutes < 60)
+		{
+			minutes++;
+		}
+		else
+		{
+			minutes = 0;
+			hours++;
+			// If hours is 13 AM, 
+			// 		set hours to 1 AM.
+			if (hours < 13)
+			{
+				hours++;
+			}
+			else
+			{
+				hours = 1;
+			}//END HOURS ELSE
+		}//END MINUTES ELSE
+	}//END SECONDS ELSE
+	return;
+}//END TICK
+
+void MyClock::displayMilitaryTime()
+{
+	if (amPm == 'P' && hours !=12)
+	{
+		hours += 12;
+	}
+	cout << hours << ":" << minutes << endl;
+	return;
+}//END DISPLAY M TIME
+		// Helper function for displayTime().
+		// Display military time 1:00 hours to 24:00 hours. 
+		//****************************************
+		//
+
+void MyClock::displayTime()
+{
+	if (isMilitaryTime == true)
+	{
+		displayMilitaryTime();
+	}
+	else
+	{
+		cout << hours << ":" << minutes << " " << amPm << endl;
+	}
+	return;
+}//END DISPLAY TIME
+		// If isMilitaryTime is false,
+		// 		display standard time 12:00 A.
+		// If isMilitaryTime is true,
+		// 		display military time 1:00 hrs to 24:00 hrs.
+
+

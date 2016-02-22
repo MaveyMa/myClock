@@ -1,0 +1,10 @@
+#include <iostream>
+#include <string>
+#include "myclock.h"
+using namespace std;
+
+int main()
+{
+	cout << "HELLO FAFA!" << endl;
+	return 0;
+}//END MAIN
