@@ -154,24 +154,22 @@ void MyClock::tick()
 {
 	// If seconds is 60, 
 	// 		set seconds to 0 and increase minutes by 1. 
-	if (seconds < 59)
+	if (seconds < 60)
 	{
 		seconds++;
 	}
 	else
 	{
 		seconds = 0;
-		minutes++;
 		// If minutes is 60, 
 		// 		set minutes to 0 and increase hours by 1
-		if (minutes < 59)
+		if (minutes < 60)
 		{
 			minutes++;
 		}
 		else
 		{
 			minutes = 0;
-			hours++;
 			// If hours is 13 AM, 
 			// 		set hours to 1 AM.
 			if (hours < 12)

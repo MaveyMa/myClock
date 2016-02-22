@@ -161,7 +161,6 @@ void MyClock::tick()
 	else
 	{
 		seconds = 0;
-		minutes++;
 		// If minutes is 60, 
 		// 		set minutes to 0 and increase hours by 1
 		if (minutes < 59)
@@ -171,7 +170,6 @@ void MyClock::tick()
 		else
 		{
 			minutes = 0;
-			hours++;
 			// If hours is 13 AM, 
 			// 		set hours to 1 AM.
 			if (hours < 12)
